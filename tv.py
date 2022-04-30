@@ -3,7 +3,7 @@ from pywebostv.discovery import *
 from pywebostv.connection import *
 from pywebostv.controls import *
 
-store = {'client_key' : '601956a8f6e95dfd5202db3389fe1422'}
+store = {'client_key' : #clientid}
 
 # client = WebOSClient.discover()[0]
 client = WebOSClient('192.168.0.112')
