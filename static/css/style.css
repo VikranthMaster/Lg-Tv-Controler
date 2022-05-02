@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+h3
+{
+    color: aliceblue;
+    font-family: 'Raleway', sans-serif;
+    font-size: 36px;
+}
+
+html, body
+{
+    display: grid;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    background: #040d15;
+}
+
+.volume h1
+{
+    color:#fff;
+    font-size: 24px;
+}
+
+.something h1
+{
+    color: #fff;
+    font-size: 24px;
+}
+
+input{
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+input[type = "text"]
+{
+    background: #fff;
+    width: 340px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 0 25px;
+    border-radius: 25px 0 0 25px;
+}
+
+input[type="submit"]
+{
+    position: relative;
+    border-radius: 0 25px 25px 0;
+    height: 50px;
+    width: 340px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #ffc107;
+    color: #fff;
+}
+
+input[type="submit"]:hover
+{
+    transition: 0.5s;
+    background-color: #ff5722;
+}
+
+.wrapper
+{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 14px;
+    left: 170px;
+}
+
+.wrapper .button
+{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    float: left;
+    margin: 0 5px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0px 10px 10px rgba(0,0,0,1);
+    transition: all 0.3s ease-out;
+}
+
+.wrapper .button:hover
+{
+    width: 200px;
+}
+
+.wrapper .button .icon
+{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50px;
+    box-sizing: border-box;
+    line-height: 60px;
+    transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon
+{
+    background: #C0C0C0;
+}
+
+.wrapper .button .icon i
+{
+    font-size: 25px;
+    line-height: 60px;
+}
+
+.wrapper .button span
+{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 60px;
+    margin-left: 10px;
+}
+
+.notify h1
+{
+    color:#fff;
+    font-size: 24px;
+}
+.notify
+{
+    position: relative;
+    bottom: 200px;
+}
