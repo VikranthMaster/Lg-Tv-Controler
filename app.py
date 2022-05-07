@@ -6,9 +6,9 @@ import tv
 # from pywebostv.controls import *
 
 app = Flask(__name__, template_folder='templates')
-app.secret_key = 'knskand andjsnaj'
+app.secret_key = '#SECERT'
 
-store = {'client_key': 'c146293fcc14626b469f11d5790f21c0'}
+store = {'client_key': #client_key}
 
 # client = WebOSClient("192.168.0.112")
 # client.connect()
