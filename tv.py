@@ -4,7 +4,7 @@ from pywebostv.controls import *
 from pprint import pprint
 
 # store = {'client_key' : #}
-# store = {'client_key': 'c146293fcc14626bs469f11d5790f21c0'}
+# store = {'client_key': 'TOKEN'}
 
 class Remote(object):
     def __init__(self, token,client=None,ip=None):
