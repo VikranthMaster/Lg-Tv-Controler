@@ -9,13 +9,17 @@ MAC = "44-CB-8B-2B-7E-DC"
 IP = "192.168.1.35"
 store = {'client_key': 'bd6b621e59cd9f6cde153e30190b1847'}
 
-try:
-    rem = Remote(token=store, ip=IP)
-except:
-    pass
+store1 = {}
+
+rem = None
 
 @app.route("/")
 def home():
+    global rem
+    try:
+        rem = Remote(token = store1, ip=IP)
+    except:
+        print("Not available")
     return render_template('index.html')
 
 @app.route("/vol", methods = ["GET", "POST"])
@@ -140,4 +144,4 @@ def menu():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host = '0.0.0.0', port=5000)

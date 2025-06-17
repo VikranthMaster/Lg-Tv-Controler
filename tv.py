@@ -18,12 +18,13 @@ class Remote(object):
         else:
             self.client = WebOSClient.discover()[0]
             self.client.connect()
+            for status in self.client.register(self.token):
+                if status == WebOSClient.PROMPTED:
+                    print("Please accept the connection to TV !")
+                elif status == WebOSClient.REGISTERED:
+                    print("Registration successful")
         
-        for status in self.client.register(self.token):
-            if status == WebOSClient.PROMPTED:
-                print("Please accept the connection to TV !")
-            elif status == WebOSClient.REGISTERED:
-                print("Registration successful")
+        
 
     def set_vol(self, vol=None):
         media = MediaControl(self.client)
