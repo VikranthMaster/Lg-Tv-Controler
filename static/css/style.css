@@ -1,144 +1,198 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
-*
-{
+
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
-
-h3
-{
+h3 {
     color: aliceblue;
     font-family: 'Raleway', sans-serif;
     font-size: 36px;
+    margin-top: 20px;
 }
 
-html, body
-{
-    display: grid;
+html,
+body {
     height: 100%;
     width: 100%;
-    place-items: center;
     background: #040d15;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.volume h1
-{
-    color:#fff;
-    font-size: 24px;
+/* Top power buttons */
+.powers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin: 20px 0;
 }
 
-.something h1
-{
+.turn-on-btn,
+.turn-off-btn {
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    color: white;
+}
+
+.turn-on-btn {
+    background: #28a745;
+}
+
+.turn-on-btn:hover {
+    background: #218838;
+}
+
+.turn-off-btn {
+    background: rgb(223, 50, 50);
+}
+
+.turn-off-btn:hover {
+    background: rgb(190, 40, 40);
+}
+
+/* Main content flex layout */
+.main-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 90%;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* Controls left */
+.controls {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.volume h1,
+.notify h1,
+.open h1 {
     color: #fff;
     font-size: 24px;
+    margin-bottom: 10px;
 }
 
-input{
-    position: relative;
-    display: inline-block;
-    font-size: 20px;
-    box-sizing: border-box;
-}
-
-input[type = "text"]
-{
+input[type="text"] {
     background: #fff;
-    width: 340px;
+    width: 300px;
     height: 50px;
     border: none;
     outline: none;
     padding: 0 25px;
     border-radius: 25px 0 0 25px;
+    font-size: 16px;
 }
 
-input[type="submit"]
-{
-    position: relative;
-    border-radius: 0 25px 25px 0;
+input[type="submit"] {
     height: 50px;
-    width: 340px;
+    border-radius: 0 25px 25px 0;
     border: none;
     outline: none;
     cursor: pointer;
     background: #ffc107;
     color: #fff;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-input[type="submit"]:hover
-{
-    transition: 0.5s;
+input[type="submit"]:hover {
     background-color: #ff5722;
+    transition: 0.3s;
 }
 
-.wrapper
-{
+/* Button wrapper for media controls */
+.wrapper {
     display: flex;
-    align-items: center;
-    position: relative;
-    top: 14px;
-    left: 170px;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
 }
 
-.wrapper .button
-{
+.wrapper .button {
     display: inline-block;
     height: 60px;
     width: 60px;
-    float: left;
-    margin: 0 5px;
-    overflow: hidden;
     background: #fff;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0px 10px 10px rgba(0,0,0,1);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
     transition: all 0.3s ease-out;
+    text-align: center;
 }
 
-.wrapper .button:hover
-{
+.wrapper .button:hover {
     width: 200px;
 }
 
-.wrapper .button .icon
-{
-    display: inline-block;
+.wrapper .button .icon {
     height: 60px;
     width: 60px;
-    text-align: center;
-    border-radius: 50px;
-    box-sizing: border-box;
     line-height: 60px;
+    border-radius: 50px;
     transition: all 0.3s ease-out;
 }
-.wrapper .button:hover .icon
-{
+
+.wrapper .button:hover .icon {
     background: #C0C0C0;
 }
 
-.wrapper .button .icon i
-{
+.wrapper .button .icon i {
     font-size: 25px;
-    line-height: 60px;
 }
 
-.wrapper .button span
-{
+.wrapper .button span {
     font-size: 20px;
     font-weight: 500;
     line-height: 60px;
     margin-left: 10px;
 }
 
-.notify h1
-{
-    color:#fff;
-    font-size: 24px;
+/* Remote button grid */
+.remote-grid {
+    display: grid;
+    grid-template-columns: 60px 60px 60px;
+    grid-template-rows: 60px 60px 60px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
 }
-.notify
-{
-    position: relative;
-    bottom: 200px;
+
+.remote-grid form {
+    margin: 0;
+}
+
+.remote-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    background-color: #f4c542;
+    color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remote-button:hover {
+    background-color: #e6b800;
 }

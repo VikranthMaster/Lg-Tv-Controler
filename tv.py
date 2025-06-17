@@ -109,3 +109,38 @@ class Remote(object):
         
         elif "aix_white" in icon_url:
             print("Seeing Prime Videos")
+
+    def ok(self):
+        inp = InputControl(self.client)
+        inp.connect_input()
+        inp.ok()
+        
+    def up(self):
+        inp = InputControl(self.client)
+        inp.connect_input()
+        inp.up()
+    
+    def down(self):
+        inp = InputControl(self.client)
+        inp.connect_input()
+        inp.down()
+        
+    def left(self):
+        inp = InputControl(self.client)
+        inp.connect_input()
+        inp.left()
+        
+    def right(self):
+        inp = InputControl(self.client)
+        inp.connect_input()
+        inp.right()
+        
+    def back(self):
+        inp = InputControl(self.client)
+        inp.connect_input()
+        inp.back()
+    
+    def menu(self):
+        inp = InputControl(self.client)
+        inp.connect_input()
+        inp.home()

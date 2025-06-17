@@ -1,89 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <title>LG Virtual Remote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <h3>Welcome to LG-Virtual Remote</h3>
 
-    <div class="volume">
-        <h1>Volume</h1>
-        <form action="#" method="post">
-            <input type = "text" name = "vol" placeholder="Type..">
-            <input type = "submit" value="Submit">
+    <div class="powers">
+        <form action="{{ url_for('turnon') }}" method="post">
+            <button type="submit" class="turn-on-btn">Turn ON</button>
         </form>
+        <form action="{{ url_for('turnoff') }}" method="post">
+            <button type="submit" class="turn-off-btn">Turn OFF</button>
+        </form>
+    </div>
 
-        <br>
+    <div class="main-flex">
+        <div class="controls">
+            <div class="volume">
+                <h1>Volume</h1>
+                <form action="{{ url_for('vol') }}" method="post">
+                    <input type="text" name="vol" placeholder="Type..">
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
 
-        <div class="wrapper">
-            <div class="button">
-                <div class="icon"><i action = "{{ url_for('static', filename='js/sample.js') }}" method = "POST" class="fa fa-play" aria-hidden="true"></i></div>
-                <span>Play</span>
-            </div>
-            <div class="button">
-                <div class="icon">
-                    <i class="fa fa-pause" aria-hidden="true"></i>
+            <div class="wrapper">
+                <div class="button">
+                    <form id="playForm" action="{{ url_for('play') }}" method="post" style="display:none;"></form>
+                    <div class="icon" onclick="document.getElementById('playForm').submit();">
+                        <i class="fa fa-play" aria-hidden="true"></i>
+                    </div>
+                    <span>Play</span>
                 </div>
-                <span>Pause</span>
-            </div>
-            <div class="button">
-                <div class="icon">
-                    <i class="fa fa-stop" aria-hidden="true"></i>
+
+                <div class="button">
+                    <form id="pauseForm" action="{{ url_for('pause') }}" method="post" style="display:none;"></form>
+                    <div class="icon" onclick="document.getElementById('pauseForm').submit();">
+                        <i class="fa fa-pause" aria-hidden="true"></i>
+                    </div>
+                    <span>Pause</span>
                 </div>
-                <span>Stop</span>
-            </div>
-            <div class="button">
-                <div class="icon">
-                    <i class="fa fa-backward" aria-hidden="true"></i>
+
+                <div class="button">
+                    <form id="stopForm" action="{{ url_for('stop') }}" method="post" style="display:none;"></form>
+                    <div class="icon" onclick="document.getElementById('stopForm').submit();">
+                        <i class="fa fa-stop" aria-hidden="true"></i>
+                    </div>
+                    <span>Stop</span>
                 </div>
-                <span>Backward</span>
-            </div>
-            <div class="button">
-                <div class="icon">
-                    <i class="fa fa-forward" aria-hidden="true"></i>
+
+                <div class="button">
+                    <form id="backwardForm" action="{{ url_for('backward') }}" method="post" style="display:none;">
+                    </form>
+                    <div class="icon" onclick="document.getElementById('backwardForm').submit();">
+                        <i class="fa fa-backward" aria-hidden="true"></i>
+                    </div>
+                    <span>Backward</span>
                 </div>
-                <span>Forward</span>
+
+                <div class="button">
+                    <form id="forwardForm" action="{{ url_for('forward') }}" method="post" style="display:none;"></form>
+                    <div class="icon" onclick="document.getElementById('forwardForm').submit();">
+                        <i class="fa fa-forward" aria-hidden="true"></i>
+                    </div>
+                    <span>Forward</span>
+                </div>
+            </div>
+
+            <div class="notify">
+                <h1>Message</h1>
+                <form action="{{ url_for('notify') }}" method="post">
+                    <input type="text" name="notify" placeholder="Type.." required>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+            <div class="open">
+                <h1>Open An App</h1>
+                <form action="{{ url_for('open') }}" method="post">
+                    <input type="text" name="open" placeholder="Type.." required>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+
+        <div class="remote-wrapper">
+            <div class="remote-grid">
+                <div></div>
+                <form action="{{ url_for('up') }}" method="post">
+                    <button class="remote-button up" type="submit">↑</button>
+                </form>
+                <div></div>
+
+                <form action="{{ url_for('left') }}" method="post">
+                    <button class="remote-button left" type="submit">←</button>
+                </form>
+
+                <form action="{{ url_for('ok') }}" method="post">
+                    <button class="remote-button ok" type="submit">OK</button>
+                </form>
+
+                <form action="{{ url_for('right') }}" method="post">
+                    <button class="remote-button right" type="submit">→</button>
+                </form>
+
+                <div></div>
+                <form action="{{ url_for('down') }}" method="post">
+                    <button class="remote-button down" type="submit">↓</button>
+                </form>
+                <div></div>
+                <form action="{{ url_for('back') }}" method="post">
+                    <button class="remote-button back" type="submit">↩</button>
+                </form>
+                <div></div>
+                <form action="{{ url_for('menu') }}" method="post">
+                    <button class="remote-button menu" type="submit">🏠</button>
+                </form>
+                <div></div>
+
             </div>
         </div>
     </div>
-
-    <br>
-
-    <div class="notify">
-        <h1>Message</h1>
-        <form action="#" method="post">
-            <input type = "text" name = "notify" placeholder="Type..">
-            <input type = "submit" value="Submit">
-        </form>
-    </div>
-
-    <!-- <div class="something">
-        <h1>Do you wanna say something?</h1>
-        <form>
-            <input type = "text" name = "" placeholder="Type..">
-            <input type="submit" name="" value="Submit">
-        </form>
-    </div> -->
-
-    <script type = "text/javascript">
-        const buttons = document.querySelectorAll('a')
-        buttons.forEach(btn => {
-            btn.addEventListener('click', function(e){
-                let x = e.clientX - e.target.offsetLeft;
-                let y = e.clientY - e.target.offsetTop;
-
-                let ripples = document.createElement('span')
-                ripples.style.left = x + 'px';
-                ripples.style.top = y + 'px';
-                this.appendChild(ripples);
-
-                setTimeout(() => {
-                    ripples.remove()
-                }, 1000);
-            })
-        })
-    </script>
 </body>
 </html>
