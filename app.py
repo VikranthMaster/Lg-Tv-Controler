@@ -4,144 +4,179 @@ from wakeonlan import send_magic_packet
 
 app = Flask(__name__)
 
-
-MAC = "44-CB-8B-2B-7E-DC"
+MAC = "44:CB:8B:2B:7E:DC"
 IP = "192.168.1.35"
-store = {'client_key': 'bd6b621e59cd9f6cde153e30190b1847'}
+store = {}
+rem = None 
 
-store1 = {}
-
-rem = None
+def connect_remote():
+    global rem
+    if rem is None:
+        try:
+            rem = Remote(token=store, ip=IP)
+            return True
+        except Exception as e:
+            print(f"[!] Remote connection failed: {e}")
+            rem = None
+            return False
+    return True
 
 @app.route("/")
 def home():
-    global rem
-    try:
-        rem = Remote(token = store1, ip=IP)
-    except:
-        print("Not available")
     return render_template('index.html')
 
-@app.route("/vol", methods = ["GET", "POST"])
+@app.route("/vol", methods=["POST"])
 def vol():
-    if request.method == "POST":
-        volume = request.form['vol']
-        rem.set_vol(int(volume))
-        return redirect(url_for('home'))  # redirect to home after setting volume
-    return "404"
+    if connect_remote():
+        try:
+            volume = int(request.form['vol'])
+            rem.set_vol(volume)
+        except Exception as e:
+            print(f"[!] Volume error: {e}")
+    return redirect(url_for('home'))
 
-@app.route("/notify", methods = ["GET", "POST"])
+@app.route("/notify", methods=["POST"])
 def notify():
-    if request.method == "POST":
-        note = request.form['notify']
-        rem.notify(note)
-        return redirect(url_for('home'))  # redirect to home after setting volume
-    return "404"
+    if connect_remote():
+        try:
+            note = request.form['notify']
+            rem.notify(note)
+        except Exception as e:
+            print(f"[!] Notify error: {e}")
+    return redirect(url_for('home'))
 
-@app.route("/turnon", methods = ["GET","POST"])
+@app.route("/turnon", methods=["POST"])
 def turnon():
-    if request.method == "POST":
-        send_magic_packet(MAC)
-        return redirect(url_for('home'))
-    return "404"
+    send_magic_packet(MAC, ip_address=IP)
+    return redirect(url_for('home'))
 
-@app.route("/turnoff", methods =["GET", "POST"])
+@app.route("/turnoff", methods=["POST"])
 def turnoff():
-    if request.method == "POST":
-        rem.turnoff()
-        return redirect(url_for('home'))
-    return '404'
+    if connect_remote():
+        try:
+            rem.turnoff()
+        except Exception as e:
+            print(f"[!] Turnoff error: {e}")
+    return redirect(url_for('home'))
 
-@app.route("/open", methods = ["GET", "POST"])
+@app.route("/open", methods=["POST"])
 def open():
-    if request.method == "POST":
-        usr = request.form['open']
-        print(rem.list_apps())
-        rem.open_app(usr)
-        return redirect(url_for('home'))
-        
-@app.route("/forward", methods = ["GET", "POST"])
+    if connect_remote():
+        try:
+            usr = request.form['open']
+            print(rem.list_apps())
+            rem.open_app(usr)
+        except Exception as e:
+            print(f"[!] Open app error: {e}")
+    return redirect(url_for('home'))
+
+@app.route("/forward", methods=["POST"])
 def forward():
-    if request.method == "POST":
-        rem.fast_forward()
-        return redirect(url_for('home'))
+    if connect_remote():
+        try:
+            rem.fast_forward()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/play", methods = ["GET", "POST"])
+@app.route("/play", methods=["POST"])
 def play():
-    if request.method == "POST":
-        rem.play()
-        return redirect(url_for('home'))
+    if connect_remote():
+        try:
+            rem.play()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-
-@app.route("/stop", methods = ["GET", "POST"])
+@app.route("/stop", methods=["POST"])
 def stop():
-    if request.method == "POST":
-        rem.stop()
-        return redirect(url_for('home'))
+    if connect_remote():
+        try:
+            rem.stop()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-
-@app.route("/backward", methods = ["GET", "POST"])
+@app.route("/backward", methods=["POST"])
 def backward():
-    if request.method == "POST":
-        rem.rewind()
-        return redirect(url_for('home'))
+    if connect_remote():
+        try:
+            rem.rewind()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/pause", methods = ["GET", "POST"])
+@app.route("/pause", methods=["POST"])
 def pause():
-    if request.method == "POST":
-        rem.pause()
-        return redirect(url_for('home'))
+    if connect_remote():
+        try:
+            rem.pause()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-
-@app.route("/ok", methods = ["GET", "POST"])
+@app.route("/ok", methods=["POST"])
 def ok():
-    if request.method == "POST":
-        rem.ok()
-        return redirect(url_for('home'))
-    return '404'
+    if connect_remote():
+        try:
+            rem.ok()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/up", methods = ["GET", "POST"])
+@app.route("/up", methods=["POST"])
 def up():
-    if request.method == "POST":
-        rem.up()
-        return redirect(url_for('home'))
-    return '404'
+    if connect_remote():
+        try:
+            rem.up()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/down", methods = ["GET", "POST"])
+@app.route("/down", methods=["POST"])
 def down():
-    if request.method == "POST":
-        rem.down()
-        return redirect(url_for('home'))
-    return '404'
+    if connect_remote():
+        try:
+            rem.down()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/left", methods = ["GET", "POST"])
+@app.route("/left", methods=["POST"])
 def left():
-    if request.method == "POST":
-        rem.left()
-        return redirect(url_for('home'))
-    return '404'
+    if connect_remote():
+        try:
+            rem.left()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/right", methods = ["GET", "POST"])
+@app.route("/right", methods=["POST"])
 def right():
-    if request.method == "POST":
-        rem.right()
-        return redirect(url_for('home'))
-    return '404'
+    if connect_remote():
+        try:
+            rem.right()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/back", methods = ["GET", "POST"])
+@app.route("/back", methods=["POST"])
 def back():
-    if request.method == "POST":
-        rem.back()
-        return redirect(url_for('home'))
-    return '404'
+    if connect_remote():
+        try:
+            rem.back()
+        except:
+            pass
+    return redirect(url_for('home'))
 
-@app.route("/menu", methods = ["POST", "GET"])
+@app.route("/menu", methods=["POST"])
 def menu():
-    if request.method == "POST":
-        rem.menu()
-        return redirect(url_for('home'))
-    return '404'
-
+    if connect_remote():
+        try:
+            rem.menu()
+        except:
+            pass
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
